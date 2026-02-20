@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0f1e;
+  --bg-card: #0d1424;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --cyan: #06b6d4;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: #1e293b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* prevents horizontal scroll from extended beam */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Lighthouse beam sweep */
+@keyframes lighthouse-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Lighthouse source glow pulse */
+@keyframes lighthouse-pulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.4); }
+}

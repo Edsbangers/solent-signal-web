@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 
 type Step = "closed" | "intro" | "bottleneck" | "hours" | "proposal" | "booked";
 
@@ -82,7 +83,7 @@ export default function TheBeacon() {
   if (step === "closed") {
     return (
       <button
-        onClick={() => setStep("intro")}
+        onClick={() => { setStep("intro"); track("beacon_opened"); }}
         aria-label="Open The Beacon — AI discovery agent"
         style={{
           position: "fixed",
@@ -255,6 +256,7 @@ export default function TheBeacon() {
                   onClick={() => {
                     setBottleneck(key);
                     setStep("hours");
+                    track("beacon_bottleneck_selected", { bottleneck: key });
                   }}
                   style={{
                     display: "flex",
@@ -303,7 +305,7 @@ export default function TheBeacon() {
               {hourOptions.map(({ key, label }) => (
                 <button
                   key={key}
-                  onClick={() => setStep("proposal")}
+                  onClick={() => { setStep("proposal"); track("beacon_proposal_shown", { bottleneck: bottleneck ?? "" }); }}
                   style={{
                     padding: "10px 14px",
                     borderRadius: "10px",
@@ -389,7 +391,7 @@ export default function TheBeacon() {
 
             <Link
               href="/get-started"
-              onClick={reset}
+              onClick={() => { track("beacon_cta_clicked", { bottleneck: bottleneck ?? "" }); reset(); }}
               style={{
                 display: "block",
                 width: "100%",

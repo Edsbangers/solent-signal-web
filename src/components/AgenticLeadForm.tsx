@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent, useEffect } from "react";
+import { track } from "@vercel/analytics";
 
 type Status = "idle" | "processing" | "success" | "error";
 
@@ -69,6 +70,7 @@ export default function AgenticLeadForm() {
     e.preventDefault();
     setStatus("processing");
     setErrorMsg("");
+    track("beacon_form_submitted");
 
     const fd = new FormData(e.currentTarget);
     const payload = {
@@ -87,6 +89,7 @@ export default function AgenticLeadForm() {
 
       if (res.ok) {
         setStatus("success");
+        track("beacon_form_success");
       } else {
         const data = await res.json().catch(() => ({}));
         setErrorMsg(data.error || "Something went wrong.");

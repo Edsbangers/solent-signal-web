@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { Resend } from "resend";
+import { createClient } from "@supabase/supabase-js";
 
 // Clients are instantiated inside the handler so env vars are read at runtime,
 // not at build time (which would throw on Vercel with no keys configured yet).
@@ -181,6 +182,27 @@ Message: ${message}`;
         { error: "Email delivery failed.", detail },
         { status: 500 }
       );
+    }
+
+    // ── 4. Save lead to Supabase ──────────────────────────────────────────────
+    try {
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+      );
+      await supabase.from("leads").insert({
+        name,
+        email,
+        company: company || null,
+        message,
+        category: parsed.category,
+        lead_score: parsed.lead_score,
+        lead_score_rationale: parsed.lead_score_rationale,
+        brief_subject: parsed.brief.subject,
+      });
+    } catch (dbErr) {
+      // Non-fatal: emails already sent, just log the DB error
+      console.error("Supabase insert error:", dbErr);
     }
 
     return NextResponse.json({

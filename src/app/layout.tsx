@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import BeaconWrapper from "@/components/BeaconWrapper";
 
 export const metadata: Metadata = {
   title: {
@@ -9,10 +10,10 @@ export const metadata: Metadata = {
     template: "%s — Solent Signal",
   },
   description:
-    "AEO-optimised websites for Portsmouth & Solent area businesses. Get found by ChatGPT, Google AI & voice search. Made in Portsmouth.",
+    "GEO-optimised websites for Portsmouth & Solent area businesses. Get found by ChatGPT, Google AI & voice search. Made in Portsmouth.",
   keywords: [
-    "AEO",
-    "Answer Engine Optimisation",
+    "GEO",
+    "Generative Engine Optimisation",
     "Portsmouth website",
     "local business SEO",
     "ChatGPT optimisation",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Solent Signal — Websites AI Actually Recommends",
     description:
-      "AEO-optimised websites for Portsmouth & Solent area businesses.",
+      "GEO-optimised websites for Portsmouth & Solent area businesses.",
     url: "https://solentsignal.com",
     siteName: "Solent Signal",
     locale: "en_GB",
@@ -33,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Solent Signal — Websites AI Actually Recommends",
     description:
-      "AEO-optimised websites for Portsmouth & Solent area businesses.",
+      "GEO-optimised websites for Portsmouth & Solent area businesses.",
   },
   metadataBase: new URL("https://solentsignal.com"),
   robots: { index: true, follow: true },
@@ -45,7 +46,7 @@ const localBusinessSchema = {
   name: "Solent Signal",
   url: "https://solentsignal.com",
   description:
-    "AEO-optimised websites for Portsmouth and Solent area businesses. We help local businesses get recommended by AI search engines including ChatGPT, Google AI Overview, and voice assistants.",
+    "GEO-optimised websites for Portsmouth and Solent area businesses. We help local businesses get recommended by AI search engines including ChatGPT, Google AI Overview, and voice assistants.",
   email: "hello@solentsignal.com",
   areaServed: [
     { "@type": "City", name: "Portsmouth" },
@@ -66,8 +67,8 @@ const localBusinessSchema = {
     jobTitle: "Founder & IRCA Principal Auditor",
   },
   knowsAbout: [
-    "AEO",
-    "Answer Engine Optimisation",
+    "GEO",
+    "Generative Engine Optimisation",
     "Local SEO",
     "AI Search Optimisation",
     "Schema Markup",
@@ -97,6 +98,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <BeaconWrapper />
       </body>
     </html>
   );

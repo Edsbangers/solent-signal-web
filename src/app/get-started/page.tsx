@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LeadCaptureForm from "@/components/LeadCaptureForm";
+import AgenticLeadForm from "@/components/AgenticLeadForm";
 
 export const metadata: Metadata = {
   title: "Get Your Free AI Visibility Audit",
@@ -12,6 +12,12 @@ export default function GetStartedPage() {
     <main className="max-w-2xl mx-auto px-6 py-20">
       {/* Header */}
       <div className="text-center mb-12">
+        <div
+          className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 text-xs font-bold uppercase tracking-widest"
+          style={{ background: "rgba(6,182,212,0.08)", border: "1px solid rgba(6,182,212,0.2)", color: "#06b6d4" }}
+        >
+          🔦 Powered by The Beacon AI
+        </div>
         <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-5">
           Get Your Free{" "}
           <span
@@ -29,8 +35,8 @@ export default function GetStartedPage() {
           className="text-lg leading-relaxed"
           style={{ color: "#94a3b8" }}
         >
-          We&apos;ll check how your business shows up in ChatGPT, Google AI &amp;
-          voice search — and show you exactly what&apos;s missing.
+          Describe your business — The Beacon analyses your needs and dispatches
+          a personalised project brief to Jason within seconds.
         </p>
       </div>
 
@@ -57,17 +63,8 @@ export default function GetStartedPage() {
         ))}
       </div>
 
-      {/* Form card */}
-      <div
-        className="rounded-2xl p-8"
-        style={{
-          background:
-            "linear-gradient(#0d1424, #0d1424) padding-box, linear-gradient(135deg, rgba(34,197,94,0.3), rgba(59,130,246,0.3)) border-box",
-          border: "1px solid transparent",
-        }}
-      >
-        <LeadCaptureForm />
-      </div>
+      {/* Agentic form */}
+      <AgenticLeadForm />
 
       {/* Reassurance */}
       <div

@@ -5,7 +5,7 @@ import PricingCard from "@/components/PricingCard";
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "AEO website packages from £49/month for Portsmouth businesses. Starter, Growth, and Authority tiers. First month completely free — no card required.",
+    "GEO website packages from £49/month for Portsmouth businesses. Starter, Growth, and Authority tiers. First month completely free — no card required.",
 };
 
 export default function PricingPage() {
@@ -32,7 +32,7 @@ export default function PricingPage() {
         >
           No setup fees. No lock-in. Cancel anytime.
           <br />
-          Every plan includes full AEO, schema markup, and AI visibility.
+          Every plan includes full GEO, schema markup, and AI visibility.
         </p>
       </div>
 
@@ -43,7 +43,7 @@ export default function PricingPage() {
           price="£49"
           features={[
             "3–5 page professional website",
-            "AEO & schema markup",
+            "GEO & schema markup",
             "Hosting & SSL included",
             "Mobile responsive",
             "1 content update/month",
@@ -67,7 +67,7 @@ export default function PricingPage() {
           features={[
             "10–20 page site + full CMS",
             "8 AI blog posts/month",
-            "Competitor AEO tracking",
+            "Competitor GEO tracking",
             "Citation building",
             "Monthly strategy call",
           ]}
@@ -130,7 +130,7 @@ export default function PricingPage() {
           {[
             {
               q: "Do I need to have an existing website?",
-              a: "No — we can build from scratch or rebuild your existing site with full AEO. Either way you get the same AI-first result.",
+              a: "No — we can build from scratch or rebuild your existing site with full GEO. Either way you get the same AI-first result.",
             },
             {
               q: "Is there a contract?",

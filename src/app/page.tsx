@@ -5,7 +5,7 @@ import PricingCard from "@/components/PricingCard";
 export const metadata: Metadata = {
   title: "Solent Signal — Websites AI Actually Recommends",
   description:
-    "AEO-optimised websites for Portsmouth & Solent area businesses. Get found by ChatGPT, Google AI & voice search. First month free.",
+    "GEO-optimised websites for Portsmouth & Solent area businesses. Get found by ChatGPT, Gemini, Perplexity & voice search. First month free.",
 };
 
 const faqSchema = {
@@ -14,10 +14,10 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "What is AEO (Answer Engine Optimisation)?",
+      name: "What is GEO (Generative Engine Optimisation)?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "AEO is the practice of optimising your website so AI systems like ChatGPT, Google AI Overview, and voice assistants recommend your business when answering user queries. Unlike traditional SEO, AEO focuses on structured data, schema markup, and semantic content that AI engines can parse and trust.",
+        text: "GEO is the new layer of SEO — built for AI-generated answers. It helps your pages surface inside responses from ChatGPT, Gemini, Perplexity, and other LLM assistants. Where SEO improves rankings, GEO improves visibility inside AI answers. We optimise both traditional SEO signals (title tags, headings, meta data, page speed) and GEO signals (structured data, entity clarity, E-E-A-T, AI summary readiness).",
       },
     },
     {
@@ -25,7 +25,7 @@ const faqSchema = {
       name: "How is Solent Signal different from a regular web agency?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Solent Signal specialises exclusively in AEO — making your website visible to AI search engines. Every site we build includes full schema markup, semantic HTML, LocalBusiness entity signals, and AI-readable structured content. Most agencies build for Google's old algorithm; we build for the AI-first web.",
+        text: "Solent Signal specialises exclusively in GEO — making your website visible to AI search engines. Every site we build includes full schema markup, semantic HTML, LocalBusiness entity signals, and AI-readable structured content. Most agencies build for Google's old algorithm; we build for the AI-first web.",
       },
     },
     {
@@ -38,10 +38,10 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      name: "How much does an AEO website cost?",
+      name: "How much does a GEO website cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Plans start from £49/month for a 3–5 page AEO website with hosting, SSL, and schema markup. Growth is £99/month and Authority is £179/month. The first month is completely free.",
+        text: "Plans start from £49/month for a 3–5 page GEO website with hosting, SSL, and schema markup. Growth is £99/month and Authority is £179/month. The first month is completely free.",
       },
     },
   ],
@@ -186,7 +186,7 @@ export default function HomePage() {
             className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
             style={{ color: "#94a3b8" }}
           >
-            AEO-optimised sites built for ChatGPT, Google AI &amp; voice search.
+            GEO-optimised sites built for ChatGPT, Gemini, Perplexity &amp; voice search.
             <br />
             Made in Portsmouth, for Portsmouth businesses.
           </p>
@@ -243,13 +243,13 @@ export default function HomePage() {
               step: "01",
               title: "We audit your AI visibility",
               description:
-                "We check exactly how your business appears (or doesn't) in ChatGPT, Google AI Overview, and voice search — for free.",
+                "We check exactly how your business appears (or doesn't) in ChatGPT, Gemini, Perplexity, and voice search — for free.",
             },
             {
               step: "02",
-              title: "We build for AEO",
+              title: "We build for GEO",
               description:
-                "We build or rebuild your site with full schema markup, semantic structure, local entity signals, and AI-readable content architecture.",
+                "We build or rebuild your site optimised for both traditional SEO and GEO signals — structured data, entity clarity, E-E-A-T, and AI summary readiness.",
             },
             {
               step: "03",
@@ -354,7 +354,7 @@ export default function HomePage() {
             </p>
           </div>
           <Link
-            href="/get-started"
+            href="/saas"
             className="flex-shrink-0 text-sm font-semibold px-5 py-2.5 rounded-full whitespace-nowrap transition-all hover:opacity-90"
             style={{
               background: "rgba(34,197,94,0.1)",
@@ -382,7 +382,7 @@ export default function HomePage() {
             price="£49"
             features={[
               "3–5 page professional website",
-              "AEO & schema markup",
+              "GEO & schema markup",
               "Hosting & SSL included",
               "Mobile responsive",
               "1 content update/month",
@@ -406,7 +406,7 @@ export default function HomePage() {
             features={[
               "10–20 page site + full CMS",
               "8 AI blog posts/month",
-              "Competitor AEO tracking",
+              "Competitor GEO tracking",
               "Citation building",
               "Monthly strategy call",
             ]}

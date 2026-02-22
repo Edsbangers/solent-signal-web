@@ -28,7 +28,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-              AEO-optimised websites for Portsmouth &amp; the Solent region.
+              GEO-optimised websites for Portsmouth &amp; the Solent region.
               We help local businesses get found by ChatGPT, Google AI &amp;
               voice search.
             </p>
@@ -42,13 +42,14 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          <div className="flex gap-16 text-sm">
+          <div className="flex gap-12 sm:gap-16 text-sm flex-wrap">
             <nav className="flex flex-col gap-3">
               <span className="font-semibold text-white mb-1">Pages</span>
               {[
                 { href: "/", label: "Home" },
                 { href: "/about", label: "About" },
                 { href: "/pricing", label: "Pricing" },
+                { href: "/saas", label: "Bespoke SaaS" },
                 { href: "/get-started", label: "Get Started" },
               ].map(({ href, label }) => (
                 <Link
@@ -61,20 +62,41 @@ export default function Footer() {
                 </Link>
               ))}
             </nav>
-            <div className="flex flex-col gap-3">
+            <nav className="flex flex-col gap-3">
               <span className="font-semibold text-white mb-1">Services</span>
               {[
-                "AEO Audit",
-                "Website Build",
-                "AI Blog Content",
-                "AI Agents",
-                "Schema Markup",
-              ].map((s) => (
-                <span key={s} style={{ color: "#94a3b8" }}>
-                  {s}
-                </span>
+                { href: "/get-started", label: "GEO Audit" },
+                { href: "/pricing", label: "Website Build" },
+                { href: "/pricing", label: "AI Blog Content" },
+                { href: "/saas", label: "AI Agents" },
+                { href: "/saas", label: "Bespoke SaaS" },
+              ].map(({ href, label }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className="hover:text-white transition-colors"
+                  style={{ color: "#94a3b8" }}
+                >
+                  {label}
+                </Link>
               ))}
-            </div>
+            </nav>
+            <nav className="flex flex-col gap-3">
+              <span className="font-semibold text-white mb-1">Legal</span>
+              {[
+                { href: "/privacy-policy", label: "Privacy Policy" },
+                { href: "/terms", label: "Terms of Service" },
+              ].map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="hover:text-white transition-colors"
+                  style={{ color: "#94a3b8" }}
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
           </div>
         </div>
 
@@ -83,11 +105,18 @@ export default function Footer() {
           style={{ borderColor: "#1e293b", color: "#475569" }}
         >
           <span>© Solent Signal 2026 · Portsmouth, Hampshire, UK</span>
-          <span>
-            Built by an{" "}
-            <span className="text-white">IRCA Registered Principal Auditor</span>{" "}
-            · AI-first web development
-          </span>
+          <div className="flex items-center gap-4">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
+            <span>
+              Built by an{" "}
+              <span className="text-white">IRCA Registered Principal Auditor</span>
+            </span>
+          </div>
         </div>
       </div>
     </footer>

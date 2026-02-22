@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   return (
@@ -59,10 +60,13 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* CTA */}
+        {/* Mobile hamburger */}
+        <MobileMenu />
+
+        {/* CTA — desktop only (mobile version is inside MobileMenu) */}
         <Link
           href="/get-started"
-          className="flex-shrink-0 text-sm font-bold px-4 md:px-5 py-2 md:py-2.5 rounded-full transition-all hover:opacity-90 active:scale-95"
+          className="hidden md:inline-block flex-shrink-0 text-sm font-bold px-5 py-2.5 rounded-full transition-all hover:opacity-90 active:scale-95"
           style={{ background: "#22c55e", color: "#000" }}
         >
           Get Free Audit

@@ -1,6 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import { redirect } from "next/navigation";
-import { headers } from "next/headers";
 
 interface Lead {
   id: string;
@@ -32,51 +30,7 @@ function formatDate(iso: string) {
   });
 }
 
-export default async function AdminLeadsPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ pw?: string }>;
-}) {
-  const resolvedParams = await searchParams;
-
-  // ── Password check ─────────────────────────────────────────────────────────
-  const adminPw = process.env.ADMIN_PASSWORD;
-  if (!adminPw || resolvedParams.pw !== adminPw) {
-    return (
-      <main
-        style={{
-          minHeight: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#0a0f1e",
-        }}
-      >
-        <div
-          style={{
-            background: "rgba(13,20,36,0.9)",
-            border: "1px solid #1e293b",
-            borderRadius: "16px",
-            padding: "40px 48px",
-            textAlign: "center",
-            maxWidth: "400px",
-            width: "90%",
-          }}
-        >
-          <div style={{ fontSize: "32px", marginBottom: "16px" }}>🔒</div>
-          <h1 style={{ color: "#fff", fontSize: "20px", fontWeight: 700, marginBottom: "8px" }}>
-            Admin Access
-          </h1>
-          <p style={{ color: "#94a3b8", fontSize: "14px", marginBottom: "24px" }}>
-            Append <code style={{ color: "#06b6d4" }}>?pw=your_password</code> to the URL to access the leads dashboard.
-          </p>
-          <p style={{ color: "#475569", fontSize: "12px" }}>
-            Set <code>ADMIN_PASSWORD</code> in your Vercel environment variables.
-          </p>
-        </div>
-      </main>
-    );
-  }
+export default async function AdminLeadsPage() {
 
   // ── Fetch leads from Supabase ───────────────────────────────────────────────
   let leads: Lead[] = [];

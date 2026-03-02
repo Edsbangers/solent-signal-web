@@ -72,6 +72,38 @@ export default async function AdminLeadsPage() {
     <main style={{ minHeight: "100vh", background: "#0a0f1e", padding: "32px 24px" }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
+        {/* Admin nav */}
+        <div style={{ display: "flex", gap: "8px", marginBottom: "24px" }}>
+          <span
+            style={{
+              fontSize: "13px",
+              fontWeight: 600,
+              padding: "6px 16px",
+              borderRadius: "8px",
+              background: "rgba(6,182,212,0.1)",
+              color: "#06b6d4",
+              border: "1px solid rgba(6,182,212,0.25)",
+            }}
+          >
+            Leads
+          </span>
+          <a
+            href="/admin/blog"
+            style={{
+              fontSize: "13px",
+              fontWeight: 600,
+              padding: "6px 16px",
+              borderRadius: "8px",
+              background: "rgba(255,255,255,0.03)",
+              color: "#94a3b8",
+              border: "1px solid #1e293b",
+              textDecoration: "none",
+            }}
+          >
+            Blog Generator
+          </a>
+        </div>
+
         {/* Header */}
         <div style={{ marginBottom: "32px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
@@ -109,6 +141,56 @@ export default async function AdminLeadsPage() {
                 {value}
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Analytics links */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "12px", marginBottom: "32px" }}>
+          {[
+            {
+              label: "Google Analytics",
+              description: "Traffic, sessions & conversions",
+              href: "https://analytics.google.com",
+              colour: "#f59e0b",
+              icon: "📊",
+            },
+            {
+              label: "Vercel Analytics",
+              description: "Page views & web vitals",
+              href: "https://vercel.com/dashboard",
+              colour: "#06b6d4",
+              icon: "⚡",
+            },
+            {
+              label: "Vercel Speed Insights",
+              description: "Core Web Vitals & performance",
+              href: "https://vercel.com/dashboard",
+              colour: "#a78bfa",
+              icon: "🚀",
+            },
+          ].map(({ label, description, href, colour, icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: "rgba(13,20,36,0.8)",
+                border: "1px solid #1e293b",
+                borderRadius: "12px",
+                padding: "16px 20px",
+                textDecoration: "none",
+                display: "block",
+                transition: "border-color 0.2s",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
+                <span style={{ fontSize: "16px" }}>{icon}</span>
+                <span style={{ color: colour, fontSize: "13px", fontWeight: 700 }}>{label}</span>
+                <span style={{ color: "#475569", fontSize: "11px", marginLeft: "auto" }}>↗</span>
+              </div>
+              <div style={{ color: "#475569", fontSize: "11px" }}>{description}</div>
+            </a>
           ))}
         </div>
 

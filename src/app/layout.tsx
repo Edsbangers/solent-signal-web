@@ -14,14 +14,19 @@ export const metadata: Metadata = {
   description:
     "GEO-optimised websites for Portsmouth & Solent area businesses. Get found by ChatGPT, Google AI & voice search. Made in Portsmouth.",
   keywords: [
+    "AI Visibility Audit Portsmouth",
+    "GEO SEO Agency Portsmouth",
+    "IRCA Registered Principal Auditor Portsmouth",
+    "E-E-A-T Website Optimisation UK",
+    "AI-driven Business Growth Solent",
+    "ISO Compliant Digital Strategy",
+    "ChatGPT Optimisation for Portsmouth Businesses",
+    "Local SEO for Solent Trades",
+    "Digital Authority Audit Hampshire",
     "GEO",
     "Generative Engine Optimisation",
-    "Portsmouth website",
-    "local business SEO",
-    "ChatGPT optimisation",
     "Google AI Overview",
     "voice search",
-    "Hampshire web design",
   ],
   openGraph: {
     title: "Solent Signal — Websites AI Actually Recommends",
@@ -42,43 +47,55 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const localBusinessSchema = {
+const siteSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: "Solent Signal",
-  url: "https://solentsignal.com",
-  description:
-    "GEO-optimised websites for Portsmouth and Solent area businesses. We help local businesses get recommended by AI search engines including ChatGPT, Google AI Overview, and voice assistants.",
-  email: "hello@solentsignal.com",
-  areaServed: [
-    { "@type": "City", name: "Portsmouth" },
-    { "@type": "City", name: "Southampton" },
-    { "@type": "City", name: "Fareham" },
-    { "@type": "City", name: "Gosport" },
-    { "@type": "AdministrativeArea", name: "Hampshire" },
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://www.solentsignal.com/#organization",
+      name: "Solent Signal",
+      url: "https://www.solentsignal.com",
+      description:
+        "Portsmouth-based agency specialising in GEO-optimised websites that AI recommends. Led by an IRCA Registered Principal Auditor.",
+      email: "hello@solentsignal.com",
+      knowsAbout: [
+        "GEO",
+        "Generative Engine Optimisation",
+        "ISO Auditing",
+        "AI Search Visibility",
+        "E-E-A-T Website Optimisation",
+        "Schema Markup",
+        "ISO 42001",
+        "AI Governance",
+      ],
+      areaServed: [
+        { "@type": "City", name: "Portsmouth" },
+        { "@type": "City", name: "Southampton" },
+        { "@type": "City", name: "Fareham" },
+        { "@type": "City", name: "Gosport" },
+        { "@type": "AdministrativeArea", name: "Hampshire" },
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Portsmouth",
+        addressRegion: "Hampshire",
+        addressCountry: "GB",
+      },
+      founder: {
+        "@type": "Person",
+        name: "Jason Misters",
+        jobTitle: "Founder & IRCA Registered Principal Auditor",
+      },
+      priceRange: "££",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.solentsignal.com/#website",
+      url: "https://www.solentsignal.com",
+      name: "Solent Signal",
+      publisher: { "@id": "https://www.solentsignal.com/#organization" },
+    },
   ],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Portsmouth",
-    addressRegion: "Hampshire",
-    addressCountry: "GB",
-  },
-  founder: {
-    "@type": "Person",
-    name: "Jason Misters",
-    jobTitle: "Founder & IRCA Principal Auditor",
-  },
-  knowsAbout: [
-    "GEO",
-    "Generative Engine Optimisation",
-    "Local SEO",
-    "AI Search Optimisation",
-    "Schema Markup",
-    "Web Development",
-    "ISO 42001",
-    "AI Governance",
-  ],
-  priceRange: "££",
 };
 
 export default function RootLayout({
@@ -104,7 +121,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessSchema),
+            __html: JSON.stringify(siteSchema),
           }}
         />
       </head>

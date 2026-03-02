@@ -3,48 +3,55 @@ import Link from "next/link";
 import PricingCard from "@/components/PricingCard";
 
 export const metadata: Metadata = {
-  title: "Solent Signal — Websites AI Actually Recommends",
+  title: "Solent Signal | AI Search & GEO Optimisation Portsmouth",
   description:
-    "GEO-optimised websites for Portsmouth & Solent area businesses. Get found by ChatGPT, Gemini, Perplexity & voice search. First month free.",
+    "Get found by ChatGPT & Google AI. Solent Signal provides GEO-optimised websites and digital audits in Portsmouth, led by an IRCA Registered Principal Auditor.",
 };
+
+const faqItems = [
+  {
+    question: "What is GEO and why does my Portsmouth business need it?",
+    answer:
+      "GEO (Generative Engine Optimisation) ensures your business is cited by AI tools like ChatGPT. Unlike traditional SEO, it focuses on E-E-A-T and structured data to make you the \"recommended\" local choice.",
+  },
+  {
+    question: "How does an IRCA Principal Auditor help my website?",
+    answer:
+      "Trust is the #1 signal for AI. Our IRCA-registered lead uses ISO-level auditing rigour to ensure your site meets the highest standards of data accuracy and authority, which AI engines reward with higher visibility.",
+  },
+  {
+    question: "What is GEO (Generative Engine Optimisation)?",
+    answer:
+      "GEO is the new layer of SEO — built for AI-generated answers. It helps your pages surface inside responses from ChatGPT, Gemini, Perplexity, and other LLM assistants. Where SEO improves rankings, GEO improves visibility inside AI answers. We optimise both traditional SEO signals (title tags, headings, meta data, page speed) and GEO signals (structured data, entity clarity, E-E-A-T, AI summary readiness).",
+  },
+  {
+    question: "How is Solent Signal different from a regular web agency?",
+    answer:
+      "Solent Signal specialises exclusively in GEO — making your website visible to AI search engines. Every site we build includes full schema markup, semantic HTML, LocalBusiness entity signals, and AI-readable structured content. Most agencies build for Google's old algorithm; we build for the AI-first web.",
+  },
+  {
+    question: "Which businesses does Solent Signal work with?",
+    answer:
+      "We work with local businesses across Portsmouth, Southampton, Fareham, Gosport, and the wider Solent region — including trades, solicitors, restaurants, retailers, estate agents, and professional service businesses.",
+  },
+  {
+    question: "How much does a GEO website cost?",
+    answer:
+      "Plans start from £49/month for a 3–5 page GEO website with hosting, SSL, and schema markup. Growth is £99/month and Authority is £179/month. The first month is completely free.",
+  },
+];
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What is GEO (Generative Engine Optimisation)?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "GEO is the new layer of SEO — built for AI-generated answers. It helps your pages surface inside responses from ChatGPT, Gemini, Perplexity, and other LLM assistants. Where SEO improves rankings, GEO improves visibility inside AI answers. We optimise both traditional SEO signals (title tags, headings, meta data, page speed) and GEO signals (structured data, entity clarity, E-E-A-T, AI summary readiness).",
-      },
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
     },
-    {
-      "@type": "Question",
-      name: "How is Solent Signal different from a regular web agency?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Solent Signal specialises exclusively in GEO — making your website visible to AI search engines. Every site we build includes full schema markup, semantic HTML, LocalBusiness entity signals, and AI-readable structured content. Most agencies build for Google's old algorithm; we build for the AI-first web.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Which businesses does Solent Signal work with?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "We work with local businesses across Portsmouth, Southampton, Fareham, Gosport, and the wider Solent region — including trades, solicitors, restaurants, retailers, estate agents, and professional service businesses.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How much does a GEO website cost?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Plans start from £49/month for a 3–5 page GEO website with hosting, SSL, and schema markup. Growth is £99/month and Authority is £179/month. The first month is completely free.",
-      },
-    },
-  ],
+  })),
 };
 
 export default function HomePage() {
@@ -167,7 +174,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.08] tracking-tight mb-6">
-            Websites that{" "}
+            Websites That{" "}
             <span
               style={{
                 background: "linear-gradient(135deg, #3b82f6, #06b6d4)",
@@ -176,19 +183,21 @@ export default function HomePage() {
                 backgroundClip: "text",
               }}
             >
-              AI actually
+              AI Actually
               <br />
-              recommends.
+              Recommends
             </span>
+            {" "}&mdash; Built in Portsmouth.
           </h1>
 
           <p
             className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
             style={{ color: "#94a3b8" }}
           >
-            GEO-optimised sites built for ChatGPT, Gemini, Perplexity &amp; voice search.
-            <br />
-            Made in Portsmouth, for Portsmouth businesses.
+            Solent Signal is a Portsmouth-based digital authority agency that ensures your
+            business is the one AI recommends. Founded by an IRCA Registered Principal Auditor,
+            we engineer high-trust, GEO-optimised platforms designed to dominate AI search
+            results and voice queries across the Solent and beyond.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -228,10 +237,63 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── How it works ── */}
+      {/* ── The Auditor's Edge ── */}
       <section className="max-w-6xl mx-auto px-6 py-20">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-3">
-          How it works
+          The Auditor&apos;s Edge: Why IRCA Standards Matter for Your Digital Trust
+        </h2>
+        <p
+          className="text-center max-w-3xl mx-auto mb-12"
+          style={{ color: "#94a3b8" }}
+        >
+          AI engines reward trust above all else. Our IRCA-registered Principal Auditor
+          applies ISO-level rigour to every site we build &mdash; ensuring data accuracy,
+          structured authority signals, and the kind of verifiable credibility that makes
+          AI recommend you over the competition.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              icon: "🛡️",
+              title: "ISO-Grade Quality",
+              description:
+                "Every site is built to ISO 9001/27001 quality benchmarks — not just developer best practice.",
+            },
+            {
+              icon: "🔍",
+              title: "Verified Authority",
+              description:
+                "IRCA Registered Principal Auditor status means your digital trust signals are independently credible.",
+            },
+            {
+              icon: "🤖",
+              title: "AI-First Architecture",
+              description:
+                "Structured data, entity clarity, and E-E-A-T signals engineered for ChatGPT, Gemini, and Google AI.",
+            },
+          ].map(({ icon, title, description }) => (
+            <div
+              key={title}
+              className="rounded-2xl p-7"
+              style={{
+                background: "rgba(13,20,36,0.8)",
+                border: "1px solid #1e293b",
+              }}
+            >
+              <div className="text-3xl mb-4">{icon}</div>
+              <h3 className="text-lg font-bold text-white mb-2">{title}</h3>
+              <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+                {description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── How it works (GEO & SEO) ── */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-3">
+          GEO &amp; SEO: Getting Found by ChatGPT, Gemini, and Google AI
         </h2>
         <p className="text-center mb-14" style={{ color: "#94a3b8" }}>
           Three steps to becoming the business AI recommends
@@ -336,6 +398,64 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Comparison Table ── */}
+      <section className="max-w-6xl mx-auto px-6 pb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-3">
+          Why AI Search Prefers Solent Signal&apos;s High-Authority Frameworks
+        </h2>
+        <p className="text-center mb-10" style={{ color: "#94a3b8" }}>
+          See how the Auditor&apos;s Edge compares to a standard SEO agency
+        </p>
+        <div
+          className="rounded-2xl overflow-hidden"
+          style={{ border: "1px solid #1e293b" }}
+        >
+          <table className="w-full text-sm" style={{ borderCollapse: "collapse" }}>
+            <thead>
+              <tr style={{ background: "rgba(6,182,212,0.08)" }}>
+                <th className="text-left px-6 py-4 font-semibold" style={{ color: "#94a3b8", borderBottom: "1px solid #1e293b" }}>Feature</th>
+                <th className="text-left px-6 py-4 font-semibold" style={{ color: "#94a3b8", borderBottom: "1px solid #1e293b" }}>Standard SEO Agency</th>
+                <th className="text-left px-6 py-4 font-semibold" style={{ color: "#06b6d4", borderBottom: "1px solid #1e293b" }}>Solent Signal (The Auditor&apos;s Edge)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["Strategy", "Keywords & Backlinks", "GEO, Schema & AI Visibility"],
+                ["Trust Signal", "Portfolio only", "IRCA Registered Principal Auditor Status"],
+                ["Standards", "General best practice", "ISO 9001/27001 Quality Benchmarks"],
+                ["Local Focus", "Generic UK reach", "Deeply \"Made in Portsmouth\" Expertise"],
+              ].map(([feature, standard, solent], i) => (
+                <tr key={feature} style={{ background: i % 2 === 0 ? "rgba(13,20,36,0.8)" : "rgba(13,20,36,0.5)" }}>
+                  <td className="px-6 py-4 font-medium text-white" style={{ borderBottom: "1px solid #1e293b" }}>{feature}</td>
+                  <td className="px-6 py-4" style={{ color: "#94a3b8", borderBottom: "1px solid #1e293b" }}>{standard}</td>
+                  <td className="px-6 py-4 font-medium" style={{ color: "#22c55e", borderBottom: "1px solid #1e293b" }}>{solent}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      {/* ── Rooted in Portsmouth ── */}
+      <section className="max-w-6xl mx-auto px-6 pb-16">
+        <div
+          className="rounded-2xl p-8 md:p-10"
+          style={{
+            background: "linear-gradient(135deg, rgba(59,130,246,0.06), rgba(6,182,212,0.06))",
+            border: "1px solid rgba(6,182,212,0.15)",
+          }}
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            Rooted in the Portsmouth Tech Scene
+          </h2>
+          <p className="leading-relaxed" style={{ color: "#94a3b8" }}>
+            From our base near Gunwharf Quays, we help businesses across Southsea,
+            Old Portsmouth, and the wider Solent region bridge the gap between
+            traditional trade and the future of AI search.
+          </p>
+        </div>
+      </section>
+
       {/* ── AI Agents upsell strip ── */}
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <div
@@ -422,6 +542,46 @@ export default function HomePage() {
             See full pricing details →
           </Link>
         </p>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="max-w-3xl mx-auto px-6 py-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-3">
+          Frequently Asked Questions
+        </h2>
+        <p className="text-center mb-10" style={{ color: "#94a3b8" }}>
+          Everything you need to know about GEO and working with Solent Signal
+        </p>
+        <div className="flex flex-col gap-3">
+          {faqItems.map(({ question, answer }) => (
+            <details
+              key={question}
+              className="group rounded-xl"
+              style={{
+                background: "rgba(13,20,36,0.8)",
+                border: "1px solid #1e293b",
+              }}
+            >
+              <summary
+                className="cursor-pointer list-none px-6 py-5 flex items-center justify-between gap-4 font-semibold text-white text-sm select-none"
+              >
+                {question}
+                <span
+                  className="flex-shrink-0 transition-transform group-open:rotate-45"
+                  style={{ color: "#06b6d4", fontSize: "20px", lineHeight: 1 }}
+                >
+                  +
+                </span>
+              </summary>
+              <div
+                className="px-6 pb-5 text-sm leading-relaxed"
+                style={{ color: "#94a3b8" }}
+              >
+                {answer}
+              </div>
+            </details>
+          ))}
+        </div>
       </section>
 
       {/* ── Bottom CTA ── */}

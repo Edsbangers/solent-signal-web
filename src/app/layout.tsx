@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://solentsignal.com"),
   robots: { index: true, follow: true },
+  other: {
+    "facebook-domain-verification": "dkl5p0464tdlxgu8rcyomro5mhd49y",
+  },
 };
 
 const siteSchema = {

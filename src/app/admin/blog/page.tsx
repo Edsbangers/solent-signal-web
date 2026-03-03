@@ -18,6 +18,8 @@ export default function AdminBlogPage() {
   const [result, setResult] = useState<BlogResult | null>(null);
   const [error, setError] = useState("");
   const [copied, setCopied] = useState<string | null>(null);
+  const [publishing, setPublishing] = useState(false);
+  const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
 
   async function handleGenerate() {
     if (!topic.trim()) return;
@@ -57,6 +59,32 @@ export default function AdminBlogPage() {
   function copyForInstagram() {
     if (!result) return;
     copyToClipboard(result.socialSnippet, "instagram");
+  }
+
+  async function handlePublish() {
+    if (!result) return;
+    setPublishing(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/admin/publish-blog", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: result.title,
+          content: result.content,
+          excerpt: result.excerpt,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || data.error || "Publish failed");
+      setPublishedUrl(data.url);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Publish failed");
+    } finally {
+      setPublishing(false);
+    }
   }
 
   const inputStyle = {
@@ -267,6 +295,57 @@ export default function AdminBlogPage() {
                 }}
                 dangerouslySetInnerHTML={{ __html: result.content }}
               />
+            </div>
+
+            {/* Publish to website */}
+            <div
+              style={{
+                background: "rgba(13,20,36,0.8)",
+                border: "1px solid #1e293b",
+                borderRadius: "14px",
+                padding: "20px 24px",
+                marginBottom: "16px",
+              }}
+            >
+              <div style={{ color: "#94a3b8", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "12px" }}>
+                Publish to Website
+              </div>
+              {publishedUrl ? (
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  <span style={{ color: "#22c55e", fontSize: "14px", fontWeight: 600 }}>
+                    Published!
+                  </span>
+                  <a
+                    href={publishedUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: "#06b6d4",
+                      fontSize: "13px",
+                      textDecoration: "none",
+                    }}
+                  >
+                    View at {publishedUrl} ↗
+                  </a>
+                </div>
+              ) : (
+                <button
+                  onClick={handlePublish}
+                  disabled={publishing}
+                  style={{
+                    padding: "10px 24px",
+                    borderRadius: "8px",
+                    border: "1px solid rgba(34,197,94,0.3)",
+                    background: publishing ? "#1e293b" : "rgba(34,197,94,0.1)",
+                    color: publishing ? "#94a3b8" : "#22c55e",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    cursor: publishing ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {publishing ? "Publishing..." : "Publish to /blog"}
+                </button>
+              )}
             </div>
 
             {/* Social sharing */}

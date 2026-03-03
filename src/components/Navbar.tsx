@@ -58,6 +58,9 @@ export default function Navbar() {
           <Link href="/saas" className="hover:text-white transition-colors">
             Bespoke SaaS
           </Link>
+          <Link href="/blog" className="hover:text-white transition-colors">
+            Blog
+          </Link>
         </div>
 
         {/* Mobile hamburger */}

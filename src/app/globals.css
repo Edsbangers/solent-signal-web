@@ -34,6 +34,37 @@ a {
   to   { transform: rotate(360deg); }
 }
 
+/* Blog post content styling */
+.prose-custom h2 {
+  color: #f1f5f9;
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+}
+.prose-custom h3 {
+  color: #e2e8f0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+.prose-custom p {
+  margin: 0 0 1rem;
+}
+.prose-custom ul, .prose-custom ol {
+  margin: 0 0 1rem;
+  padding-left: 1.5rem;
+}
+.prose-custom li {
+  margin-bottom: 0.35rem;
+}
+.prose-custom strong {
+  color: #f1f5f9;
+}
+.prose-custom a {
+  color: #06b6d4;
+  text-decoration: underline;
+}
+
 /* Lighthouse source glow pulse */
 @keyframes lighthouse-pulse {
   0%, 100% { opacity: 0.6; transform: scale(1); }

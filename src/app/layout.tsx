@@ -47,6 +47,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   other: {
     "facebook-domain-verification": "dkl5p0464tdlxgu8rcyomro5mhd49y",
+    "apple-domain-verification": "PPr9e6qG4ICKXU4kPjvhDLeDTZkwrajADs1gYDOpU_0",
   },
 };
 

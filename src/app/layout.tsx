@@ -49,6 +49,7 @@ export const metadata: Metadata = {
   other: {
     "facebook-domain-verification": "dkl5p0464tdlxgu8rcyomro5mhd49y",
     "apple-domain-verification": "PPr9e6qG4ICKXU4kPjvhDLeDTZkwrajADs1gYDOpU_0",
+    "msvalidate.01": "D1E256EC519BCEEC312BAD4881FDFB42",
   },
 };
 

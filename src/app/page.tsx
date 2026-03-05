@@ -151,7 +151,7 @@ export default function HomePage() {
         >
           <img
             src="/logo.jpg"
-            alt=""
+            alt="Solent Signal logo watermark"
             style={{
               position: "absolute",
               top: "-15%",
@@ -169,7 +169,7 @@ export default function HomePage() {
           />
           <img
             src="/logo.jpg"
-            alt=""
+            alt="Solent Signal logo watermark"
             style={{
               position: "absolute",
               top: "-8%",

@@ -45,7 +45,7 @@ function BlinkingCursor() {
   );
 }
 
-export default function AgenticLeadForm() {
+export default function AgenticLeadForm({ defaultBusiness = "" }: { defaultBusiness?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const [linesShown, setLinesShown] = useState(0);
@@ -319,6 +319,7 @@ export default function AgenticLeadForm() {
             id="company"
             name="company"
             type="text"
+            defaultValue={defaultBusiness}
             placeholder="Portsmouth Plumbing Co."
             style={inputStyle}
             onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(6,182,212,0.5)")}

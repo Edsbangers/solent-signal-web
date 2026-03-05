@@ -61,12 +61,82 @@ const faqSchema = {
   })),
 };
 
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Solent Signal",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    reviewCount: "2",
+    bestRating: "5",
+  },
+  review: [
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Rok" },
+      reviewRating: { "@type": "Rating", ratingValue: "5" },
+      reviewBody:
+        "Solent Signal provide best service and are very supportive. They design my website and jaws dropping I just love it.",
+    },
+    {
+      "@type": "Review",
+      author: { "@type": "Person", name: "Marion Morris" },
+      reviewRating: { "@type": "Rating", ratingValue: "5" },
+      reviewBody:
+        "So happy with the website provided. A really professional approach, I felt heard and understood as to what I needed from a website and Jason was so patient to truly capture everything I asked for. So happy with the finished product I would definitely recommend.",
+    },
+  ],
+};
+
+const testimonials = [
+  {
+    name: "Rok",
+    business: "Photo By Rok",
+    type: "Photography",
+    website: "https://www.photobyrok.co.uk",
+    text: "Solent Signal provide best service and are very supportive. They design my website and jaws dropping I just love it.",
+  },
+  {
+    name: "Marion Morris",
+    business: "MM Counselling",
+    type: "Counselling & Therapy",
+    website: "https://www.mm-counselling.co.uk",
+    text: "So happy with the website provided. A really professional approach, I felt heard and understood as to what I needed from a website and Jason was so patient to truly capture everything I asked for. So happy with the finished product I would definitely recommend.",
+  },
+];
+
+const caseStudies = [
+  {
+    business: "Photo By Rok",
+    type: "Photography Studio",
+    website: "https://www.photobyrok.co.uk",
+    delivered:
+      "Built a GEO-optimised photography portfolio site with AI-readable structured data, local schema markup, and image optimisation for AI search visibility.",
+    quote: testimonials[0].text,
+    quoteName: "Rok",
+  },
+  {
+    business: "MM Counselling",
+    type: "Counselling & Therapy",
+    website: "https://www.mm-counselling.co.uk",
+    delivered:
+      "Built a professional, GEO-optimised website with full schema markup, AI content strategy, and social media integration. Designed to position Marion as the counsellor AI recommends in Portsmouth.",
+    quote: testimonials[1].text,
+    quoteName: "Marion Morris",
+  },
+];
+
 export default function HomePage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
       />
 
       {/* ── Hero ── */}
@@ -198,13 +268,17 @@ export default function HomePage() {
           </h1>
 
           <p
-            className="text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-lg md:text-xl max-w-2xl mx-auto mb-6 leading-relaxed"
             style={{ color: "#94a3b8" }}
           >
             Solent Signal is a Portsmouth-based digital authority agency that ensures your
             business is the one AI recommends. Founded by an IRCA Registered Principal Auditor,
             we engineer high-trust, GEO-optimised platforms designed to dominate AI search
             results and voice queries across the Solent and beyond.
+          </p>
+
+          <p className="text-sm font-medium mb-10" style={{ color: "#64748b" }}>
+            From £49/month · First month free · No lock-in
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -402,6 +476,30 @@ export default function HomePage() {
             Portsmouth · Southampton · Fareham · Gosport · Havant · Hampshire ·
             Solent region
           </p>
+
+          {/* Scenario example */}
+          <div
+            className="mt-8 rounded-xl p-5"
+            style={{
+              borderLeft: "3px solid #0D9488",
+              background: "rgba(13,148,136,0.04)",
+            }}
+          >
+            <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
+              Imagine you&apos;re a plumber in Southsea. Someone asks ChatGPT:{" "}
+              <em className="text-white">&ldquo;Who&apos;s the best plumber near me?&rdquo;</em>{" "}
+              Does your business appear in the answer? If not, you&apos;re losing customers
+              to competitors who&apos;ve already optimised for AI search. That&apos;s exactly
+              what we fix.
+            </p>
+            <Link
+              href="/get-started"
+              className="inline-block mt-3 text-sm font-semibold hover:opacity-80 transition-opacity"
+              style={{ color: "#0D9488" }}
+            >
+              Check your AI visibility for free →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -440,6 +538,117 @@ export default function HomePage() {
               ))}
             </tbody>
           </table>
+        </div>
+      </section>
+
+      {/* ── Testimonials ── */}
+      <section className="max-w-6xl mx-auto px-6 pb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-3">
+          Trusted by Portsmouth Businesses
+        </h2>
+        <p className="text-center mb-10" style={{ color: "#94a3b8" }}>
+          Real reviews from real clients
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {testimonials.map(({ name, business, type, website, text }) => (
+            <div
+              key={name}
+              className="rounded-2xl p-7"
+              style={{
+                background: "rgba(13,20,36,0.8)",
+                border: "1px solid #1e293b",
+                borderLeft: "3px solid #0D9488",
+              }}
+            >
+              <div className="flex items-center gap-1 mb-4">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <span key={s} style={{ color: "#D4A843", fontSize: "18px" }}>★</span>
+                ))}
+              </div>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: "#cbd5e1" }}>
+                &ldquo;{text}&rdquo;
+              </p>
+              <div>
+                <div className="font-bold text-white text-sm">{name}</div>
+                <div className="text-xs" style={{ color: "#94a3b8" }}>{business} · {type}</div>
+                <a
+                  href={website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs mt-1 inline-block hover:opacity-80 transition-opacity"
+                  style={{ color: "#0D9488" }}
+                >
+                  {website.replace("https://www.", "")} ↗
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-6">
+          <div className="inline-flex items-center gap-2 text-xs font-medium" style={{ color: "#94a3b8" }}>
+            <span style={{ fontSize: "16px" }}>G</span>
+            <span>Verified Google Reviews</span>
+            <span style={{ color: "#D4A843" }}>★★★★★</span>
+            <span>5/5</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Portfolio / Case Studies ── */}
+      <section className="max-w-6xl mx-auto px-6 pb-16">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-3">
+          Recent Work
+        </h2>
+        <p className="text-center mb-10" style={{ color: "#94a3b8" }}>
+          GEO-optimised websites we&apos;ve built for Solent businesses
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {caseStudies.map(({ business, type, website, delivered, quote, quoteName }) => (
+            <div
+              key={business}
+              className="rounded-2xl overflow-hidden"
+              style={{ background: "rgba(13,20,36,0.8)", border: "1px solid #1e293b" }}
+            >
+              <div className="p-7">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-white">{business}</h3>
+                    <p className="text-xs" style={{ color: "#94a3b8" }}>{type}</p>
+                  </div>
+                  <a
+                    href={website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold px-3 py-1.5 rounded-full hover:opacity-80 transition-opacity"
+                    style={{
+                      background: "rgba(13,148,136,0.1)",
+                      color: "#0D9488",
+                      border: "1px solid rgba(13,148,136,0.25)",
+                    }}
+                  >
+                    View site ↗
+                  </a>
+                </div>
+                <p className="text-sm leading-relaxed mb-5" style={{ color: "#94a3b8" }}>
+                  <strong className="text-white">What we delivered:</strong> {delivered}
+                </p>
+                <div
+                  className="rounded-xl p-4"
+                  style={{
+                    background: "rgba(13,148,136,0.04)",
+                    borderLeft: "3px solid #0D9488",
+                  }}
+                >
+                  <p className="text-xs leading-relaxed mb-2" style={{ color: "#cbd5e1" }}>
+                    &ldquo;{quote}&rdquo;
+                  </p>
+                  <p className="text-xs font-semibold" style={{ color: "#0D9488" }}>
+                    — {quoteName}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

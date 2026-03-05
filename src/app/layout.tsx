@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BeaconWrapper from "@/components/BeaconWrapper";
+import StickyCTA from "@/components/StickyCTA";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
@@ -58,9 +59,10 @@ const siteSchema = {
       "@type": "ProfessionalService",
       "@id": "https://www.solentsignal.com/#organization",
       name: "Solent Signal",
+      alternateName: "Solent Signal - Agentic Solutions",
       url: "https://www.solentsignal.com",
       description:
-        "Portsmouth-based agency specialising in GEO-optimised websites that AI recommends. Led by an IRCA Registered Principal Auditor.",
+        "GEO-optimised websites for Portsmouth & Solent area businesses. AI search optimisation, web design, and digital authority engineering.",
       email: "hello@solentsignal.com",
       knowsAbout: [
         "GEO",
@@ -77,6 +79,7 @@ const siteSchema = {
         { "@type": "City", name: "Southampton" },
         { "@type": "City", name: "Fareham" },
         { "@type": "City", name: "Gosport" },
+        { "@type": "City", name: "Havant" },
         { "@type": "AdministrativeArea", name: "Hampshire" },
       ],
       address: {
@@ -90,7 +93,12 @@ const siteSchema = {
         name: "Jason Misters",
         jobTitle: "Founder & IRCA Registered Principal Auditor",
       },
-      priceRange: "££",
+      priceRange: "£49-£179/month",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "5",
+        reviewCount: "2",
+      },
     },
     {
       "@type": "WebSite",
@@ -134,6 +142,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <BeaconWrapper />
+        <StickyCTA />
         <Analytics />
       </body>
     </html>

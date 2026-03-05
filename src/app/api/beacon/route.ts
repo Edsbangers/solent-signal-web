@@ -22,6 +22,35 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // ── Validate email format ───────────────────────────────────────────────
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email address." },
+        { status: 400 }
+      );
+    }
+
+    // ── Rate limiting: max 3 submissions per email per hour ─────────────────
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const { count } = await supabase
+      .from("leads")
+      .select("id", { count: "exact", head: true })
+      .eq("email", email)
+      .gte("created_at", oneHourAgo);
+
+    if (count !== null && count >= 3) {
+      return NextResponse.json(
+        { error: "Too many submissions. Please try again later." },
+        { status: 429 }
+      );
+    }
+
     // ── 1. LLM: generate brief + client response ─────────────────────────────
     const systemPrompt = `You are The Beacon — the AI Lead Intelligence Agent for Solent Signal, a specialist GEO (Generative Engine Optimisation) and AI agentic solutions agency based in Portsmouth, UK.
 
@@ -186,10 +215,6 @@ Message: ${message}`;
 
     // ── 4. Save lead to Supabase ──────────────────────────────────────────────
     try {
-      const supabase = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.SUPABASE_SERVICE_ROLE_KEY!
-      );
       await supabase.from("leads").insert({
         name,
         email,

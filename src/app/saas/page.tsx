@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Bespoke AI SaaS Builds — Solent Signal",
+  title: "Bespoke AI SaaS Builds for Portsmouth Businesses",
   description:
     "Custom AI-powered SaaS platforms built for your business. Automate workflows, generate leads, and streamline operations with the latest agentic AI solutions. Portsmouth & Solent region.",
+  alternates: { canonical: "https://solentsignal.com/saas" },
+  openGraph: {
+    title: "Bespoke AI SaaS Builds — Solent Signal",
+    description:
+      "Custom AI-powered platforms that automate workflows and generate leads. Portsmouth & Solent.",
+    url: "https://solentsignal.com/saas",
+  },
 };
 
 const useCases = [

@@ -3,9 +3,16 @@ import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
 
 export const metadata: Metadata = {
-  title: "Blog — GEO & AI Search Insights",
+  title: "GEO & AI Search Insights Blog",
   description:
     "GEO-optimised articles on AI search visibility, local SEO, and digital authority for Portsmouth and Solent businesses.",
+  alternates: { canonical: "https://solentsignal.com/blog" },
+  openGraph: {
+    title: "GEO & AI Search Insights Blog — Solent Signal",
+    description:
+      "AI search visibility, local SEO, and digital authority tips for Solent businesses.",
+    url: "https://solentsignal.com/blog",
+  },
 };
 
 interface BlogPost {
@@ -42,7 +49,7 @@ export default async function BlogListingPage() {
 
   return (
     <main className="max-w-4xl mx-auto px-6 py-20">
-      <h1 className="text-4xl md:text-5xl font-black text-white mb-3">Blog</h1>
+      <h1 className="text-4xl md:text-5xl font-black text-white mb-3">GEO & AI Search Insights</h1>
       <p className="mb-12" style={{ color: "#94a3b8" }}>
         GEO insights, AI search strategies, and digital authority tips for Solent businesses.
       </p>

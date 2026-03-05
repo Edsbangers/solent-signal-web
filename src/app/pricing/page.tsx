@@ -3,9 +3,16 @@ import Link from "next/link";
 import PricingCard from "@/components/PricingCard";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "GEO Website Pricing from £49/month",
   description:
     "GEO website packages from £49/month for Portsmouth businesses. Starter, Growth, and Authority tiers. First month completely free — no card required.",
+  alternates: { canonical: "https://solentsignal.com/pricing" },
+  openGraph: {
+    title: "GEO Website Pricing from £49/month — Solent Signal",
+    description:
+      "Starter, Growth, and Authority tiers. First month free — no card required.",
+    url: "https://solentsignal.com/pricing",
+  },
 };
 
 export default function PricingPage() {

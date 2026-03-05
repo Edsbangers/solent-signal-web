@@ -37,9 +37,24 @@ export async function generateMetadata({
 
   if (!data) return { title: "Post Not Found" };
 
+  const url = `https://solentsignal.com/blog/${slug}`;
+
   return {
     title: data.title,
     description: data.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      title: data.title,
+      description: data.excerpt,
+      url,
+      type: "article",
+      siteName: "Solent Signal",
+    },
+    twitter: {
+      card: "summary",
+      title: data.title,
+      description: data.excerpt,
+    },
   };
 }
 
@@ -62,8 +77,46 @@ export default async function BlogPostPage({
 
   const typedPost = post as BlogPost;
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: typedPost.title,
+    description: typedPost.excerpt,
+    datePublished: typedPost.published_at,
+    author: {
+      "@type": "Person",
+      name: "Jason Misters",
+      jobTitle: "Founder & IRCA Registered Principal Auditor",
+      url: "https://solentsignal.com/about",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Solent Signal",
+      url: "https://solentsignal.com",
+    },
+    mainEntityOfPage: `https://solentsignal.com/blog/${slug}`,
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://solentsignal.com" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://solentsignal.com/blog" },
+      { "@type": "ListItem", position: 3, name: typedPost.title },
+    ],
+  };
+
   return (
     <main className="max-w-3xl mx-auto px-6 py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <Link
         href="/blog"
         className="text-sm font-medium mb-8 inline-block transition-opacity hover:opacity-80"

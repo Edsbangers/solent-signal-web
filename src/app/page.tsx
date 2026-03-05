@@ -6,6 +6,13 @@ export const metadata: Metadata = {
   title: "Solent Signal | AI Search & GEO Optimisation Portsmouth",
   description:
     "Get found by ChatGPT & Google AI. Solent Signal provides GEO-optimised websites and digital audits in Portsmouth, led by an IRCA Registered Principal Auditor.",
+  alternates: { canonical: "https://solentsignal.com" },
+  openGraph: {
+    title: "Solent Signal | AI Search & GEO Optimisation Portsmouth",
+    description:
+      "Get found by ChatGPT & Google AI. GEO-optimised websites and digital audits in Portsmouth.",
+    url: "https://solentsignal.com",
+  },
 };
 
 const faqItems = [

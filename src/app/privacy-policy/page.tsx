@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Solent Signal",
+  title: "Privacy Policy",
   description: "Privacy policy for Solent Signal. How we collect, use, and protect your personal data.",
 };
 

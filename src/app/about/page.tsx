@@ -2,14 +2,53 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About — GEO Specialists & IRCA Auditor Portsmouth",
   description:
     "Portsmouth-based GEO specialists. Meet Jason Misters, IRCA Registered Principal Auditor, helping local Solent businesses get found by ChatGPT, Google AI & voice search.",
+  alternates: { canonical: "https://solentsignal.com/about" },
+  openGraph: {
+    title: "About Solent Signal — GEO Specialists Portsmouth",
+    description:
+      "Meet Jason Misters, IRCA Registered Principal Auditor, helping Solent businesses get found by AI.",
+    url: "https://solentsignal.com/about",
+  },
+};
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Jason Misters",
+  jobTitle: "Founder & IRCA Registered Principal Auditor",
+  worksFor: {
+    "@type": "Organization",
+    name: "Solent Signal",
+    url: "https://solentsignal.com",
+  },
+  knowsAbout: [
+    "GEO",
+    "Generative Engine Optimisation",
+    "ISO 42001",
+    "ISO 9001",
+    "ISO 27001",
+    "IRCA Auditing",
+    "AI Search Visibility",
+    "E-E-A-T",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Portsmouth",
+    addressRegion: "Hampshire",
+    addressCountry: "GB",
+  },
 };
 
 export default function AboutPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       {/* Header */}
       <div className="mb-16 text-center">
         <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-5">

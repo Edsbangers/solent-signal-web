@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Solent Signal",
+  title: "Terms of Service",
   description: "Terms of service for Solent Signal website plans, AI agents, and bespoke SaaS builds.",
 };
 

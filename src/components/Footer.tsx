@@ -85,6 +85,7 @@ export default function Footer() {
               <span className="font-semibold text-white mb-1">Legal</span>
               {[
                 { href: "/privacy-policy", label: "Privacy Policy" },
+                { href: "/signalpost/privacy-policy", label: "SignalPost Privacy" },
                 { href: "/terms", label: "Terms of Service" },
               ].map(({ href, label }) => (
                 <Link

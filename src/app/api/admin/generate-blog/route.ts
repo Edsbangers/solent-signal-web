@@ -14,7 +14,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const today = new Date().toLocaleDateString("en-GB", {
+      day: "numeric", month: "long", year: "numeric",
+    });
+
     const systemPrompt = `You are a GEO-optimised content writer for Solent Signal, a Portsmouth-based digital authority agency specialising in AI search visibility.
+
+Today's date is ${today}. Always use the current year (${new Date().getFullYear()}) when referencing dates, timelines, or the current period. Never use outdated years.
 
 Write blog posts that are:
 - Optimised for Generative Engine Optimisation (GEO) — structured for AI citation

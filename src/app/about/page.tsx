@@ -264,8 +264,7 @@ export default function AboutPage() {
           style={{ borderColor: "#1e293b", color: "#475569" }}
         >
           <em>
-            More team members coming soon — we&apos;re building a local Portsmouth
-            team.
+            Based in Portsmouth, working with businesses across the Solent region.
           </em>
         </div>
       </div>

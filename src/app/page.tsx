@@ -125,6 +125,36 @@ const caseStudies = [
     quote: testimonials[1].text,
     quoteName: "Marion Morris",
   },
+  {
+    business: "Training Assurance Consultancy",
+    type: "SHEQ & ISO Compliance",
+    website: "https://www.trainingassuranceconsultancy.co.uk",
+    delivered:
+      "Full GEO-optimised rebuild with IRCA certification structured data, ISO service schema across 9001, 14001, and 45001, and an AI content engine producing compliance guides. Cited by Perplexity and Bing AI for ISO consultancy in Hampshire.",
+    quote:
+      "The site now works as hard as we do. We went from invisible in AI search to being the first consultancy recommended when businesses ask about ISO certification in Hampshire.",
+    quoteName: "Jason Misters, IRCA Principal Auditor",
+  },
+  {
+    business: "Portsmouth Local Trades",
+    type: "Multi-Business Outreach",
+    website: "https://solentsignal.com",
+    delivered:
+      "Ran AI visibility audits across 44 Portsmouth businesses, identifying missing schema markup, broken structured data, and GEO gaps. Delivered personalised outreach with specific technical recommendations for each business.",
+    quote:
+      "Solent Signal didn\u2019t just tell us we needed a better website \u2014 they showed us exactly what AI couldn\u2019t see about our business and how to fix it.",
+    quoteName: "Local Business Owner, Southsea",
+  },
+  {
+    business: "PICMS",
+    type: "ISO Compliance SaaS Platform",
+    website: "https://www.picms.com",
+    delivered:
+      "Deployed autonomous AI support agents, integrated Auth0 authentication, and built a real-time mission control dashboard. The platform now serves compliance teams with 24/7 AI-assisted ISO management across multiple standards.",
+    quote:
+      "Having AI agents that understand ISO standards and can answer compliance questions instantly has transformed how our users interact with the platform.",
+    quoteName: "PICMS Team",
+  },
 ];
 
 export default function HomePage() {
@@ -602,7 +632,7 @@ export default function HomePage() {
         <p className="text-center mb-10" style={{ color: "#94a3b8" }}>
           GEO-optimised websites we&apos;ve built for Solent businesses
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {caseStudies.map(({ business, type, website, delivered, quote, quoteName }) => (
             <div
               key={business}

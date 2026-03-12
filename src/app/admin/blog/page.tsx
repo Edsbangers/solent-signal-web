@@ -20,6 +20,8 @@ export default function AdminBlogPage() {
   const [copied, setCopied] = useState<string | null>(null);
   const [publishing, setPublishing] = useState(false);
   const [publishedUrl, setPublishedUrl] = useState<string | null>(null);
+  const [linkedinPosting, setLinkedinPosting] = useState(false);
+  const [linkedinResult, setLinkedinResult] = useState<{ success: boolean; postUrl?: string; error?: string } | null>(null);
 
   async function handleGenerate() {
     if (!topic.trim()) return;
@@ -74,6 +76,7 @@ export default function AdminBlogPage() {
           title: result.title,
           content: result.content,
           excerpt: result.excerpt,
+          socialSnippet: result.socialSnippet,
         }),
       });
 
@@ -114,34 +117,28 @@ export default function AdminBlogPage() {
 
         {/* Admin nav */}
         <div style={{ display: "flex", gap: "8px", marginBottom: "24px" }}>
-          <a
-            href="/admin/leads"
-            style={{
-              fontSize: "13px",
-              fontWeight: 600,
-              padding: "6px 16px",
-              borderRadius: "8px",
-              background: "rgba(255,255,255,0.03)",
-              color: "#94a3b8",
-              border: "1px solid #1e293b",
-              textDecoration: "none",
-            }}
-          >
-            Leads
-          </a>
-          <span
-            style={{
-              fontSize: "13px",
-              fontWeight: 600,
-              padding: "6px 16px",
-              borderRadius: "8px",
-              background: "rgba(6,182,212,0.1)",
-              color: "#06b6d4",
-              border: "1px solid rgba(6,182,212,0.25)",
-            }}
-          >
-            Blog Generator
-          </span>
+          {[
+            { href: "/admin/leads", label: "Leads", active: false },
+            { href: "/admin/blog", label: "Blog Generator", active: true },
+            { href: "/admin/social", label: "Social Queue", active: false },
+          ].map((tab) => (
+            <a
+              key={tab.href}
+              href={tab.href}
+              style={{
+                fontSize: "13px",
+                fontWeight: 600,
+                padding: "6px 16px",
+                borderRadius: "8px",
+                background: tab.active ? "rgba(6,182,212,0.1)" : "rgba(255,255,255,0.03)",
+                color: tab.active ? "#06b6d4" : "#94a3b8",
+                border: `1px solid ${tab.active ? "rgba(6,182,212,0.25)" : "#1e293b"}`,
+                textDecoration: "none",
+              }}
+            >
+              {tab.label}
+            </a>
+          ))}
         </div>
 
         {/* Header */}
@@ -375,7 +372,72 @@ export default function AdminBlogPage() {
                 {result.socialSnippet}
               </div>
 
+              {linkedinResult?.success && (
+                <div style={{
+                  background: "rgba(34,197,94,0.08)",
+                  border: "1px solid rgba(34,197,94,0.25)",
+                  borderRadius: "8px",
+                  padding: "10px 14px",
+                  marginBottom: "12px",
+                  fontSize: "13px",
+                  color: "#22c55e",
+                }}>
+                  Posted to LinkedIn!{" "}
+                  <a href={linkedinResult.postUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#06b6d4" }}>
+                    View post ↗
+                  </a>
+                </div>
+              )}
+
+              {linkedinResult && !linkedinResult.success && (
+                <div style={{
+                  background: "rgba(239,68,68,0.08)",
+                  border: "1px solid rgba(239,68,68,0.25)",
+                  borderRadius: "8px",
+                  padding: "10px 14px",
+                  marginBottom: "12px",
+                  fontSize: "13px",
+                  color: "#fca5a5",
+                }}>
+                  LinkedIn failed: {linkedinResult.error}
+                </div>
+              )}
+
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                <button
+                  onClick={async () => {
+                    if (!result) return;
+                    setLinkedinPosting(true);
+                    setLinkedinResult(null);
+                    try {
+                      const blogUrl = publishedUrl ? `https://solentsignal.com${publishedUrl}` : undefined;
+                      const res = await fetch("/api/admin/post-linkedin", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ content: result.socialSnippet, linkUrl: blogUrl }),
+                      });
+                      const data = await res.json();
+                      setLinkedinResult(data);
+                    } catch {
+                      setLinkedinResult({ success: false, error: "Network error" });
+                    } finally {
+                      setLinkedinPosting(false);
+                    }
+                  }}
+                  disabled={linkedinPosting}
+                  style={{
+                    padding: "8px 18px",
+                    borderRadius: "8px",
+                    border: "1px solid rgba(59,130,246,0.3)",
+                    background: linkedinPosting ? "#1e293b" : "rgba(59,130,246,0.08)",
+                    color: linkedinPosting ? "#94a3b8" : "#3b82f6",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    cursor: linkedinPosting ? "not-allowed" : "pointer",
+                  }}
+                >
+                  {linkedinPosting ? "Posting..." : "Post to LinkedIn"}
+                </button>
                 <button
                   onClick={shareOnFacebook}
                   style={{
@@ -406,6 +468,21 @@ export default function AdminBlogPage() {
                 >
                   {copied === "instagram" ? "Copied for Instagram!" : "Copy for Instagram"}
                 </button>
+                <a
+                  href="/admin/social"
+                  style={{
+                    padding: "8px 18px",
+                    borderRadius: "8px",
+                    border: "1px solid rgba(6,182,212,0.3)",
+                    background: "rgba(6,182,212,0.08)",
+                    color: "#06b6d4",
+                    fontSize: "13px",
+                    fontWeight: 600,
+                    textDecoration: "none",
+                  }}
+                >
+                  View Social Queue →
+                </a>
               </div>
             </div>
           </>

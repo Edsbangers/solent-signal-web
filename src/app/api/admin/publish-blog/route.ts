@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { createMCTask } from "@/lib/missionControl";
 
 function slugify(text: string): string {
   return text
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     );
 
-    const { title, content, excerpt } = await req.json();
+    const { title, content, excerpt, socialSnippet } = await req.json();
 
     if (!title || !content) {
       return NextResponse.json(
@@ -52,10 +53,34 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const blogUrl = `https://solentsignal.com/blog/${data.slug}`;
+
+    // Auto-queue to LinkedIn if socialSnippet provided (non-blocking)
+    if (socialSnippet) {
+      supabase.from("social_posts").insert({
+        blog_post_id: data.id,
+        platform: "linkedin",
+        content: socialSnippet,
+        link_url: blogUrl,
+        status: "queued",
+        brand: "solent-signal",
+      }).then(() => {}, () => {});
+    }
+
+    // Create Mission Control task for Runr to distribute (non-blocking)
+    createMCTask(
+      `Distribute to socials: ${title.slice(0, 60)}`,
+      "runr",
+      "social-media",
+      "medium",
+      `Blog published: ${blogUrl}. Social snippet: ${socialSnippet || "generate from blog"}`
+    ).catch(() => {});
+
     return NextResponse.json({
       success: true,
       slug: data.slug,
       url: `/blog/${data.slug}`,
+      socialQueued: !!socialSnippet,
     });
   } catch (err) {
     const detail = err instanceof Error ? err.message : String(err);

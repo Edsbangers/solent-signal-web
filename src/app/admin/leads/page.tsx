@@ -74,34 +74,28 @@ export default async function AdminLeadsPage() {
 
         {/* Admin nav */}
         <div style={{ display: "flex", gap: "8px", marginBottom: "24px" }}>
-          <span
-            style={{
-              fontSize: "13px",
-              fontWeight: 600,
-              padding: "6px 16px",
-              borderRadius: "8px",
-              background: "rgba(6,182,212,0.1)",
-              color: "#06b6d4",
-              border: "1px solid rgba(6,182,212,0.25)",
-            }}
-          >
-            Leads
-          </span>
-          <a
-            href="/admin/blog"
-            style={{
-              fontSize: "13px",
-              fontWeight: 600,
-              padding: "6px 16px",
-              borderRadius: "8px",
-              background: "rgba(255,255,255,0.03)",
-              color: "#94a3b8",
-              border: "1px solid #1e293b",
-              textDecoration: "none",
-            }}
-          >
-            Blog Generator
-          </a>
+          {[
+            { href: "/admin/leads", label: "Leads", active: true },
+            { href: "/admin/blog", label: "Blog Generator", active: false },
+            { href: "/admin/social", label: "Social Queue", active: false },
+          ].map((tab) => (
+            <a
+              key={tab.href}
+              href={tab.href}
+              style={{
+                fontSize: "13px",
+                fontWeight: 600,
+                padding: "6px 16px",
+                borderRadius: "8px",
+                background: tab.active ? "rgba(6,182,212,0.1)" : "rgba(255,255,255,0.03)",
+                color: tab.active ? "#06b6d4" : "#94a3b8",
+                border: `1px solid ${tab.active ? "rgba(6,182,212,0.25)" : "#1e293b"}`,
+                textDecoration: "none",
+              }}
+            >
+              {tab.label}
+            </a>
+          ))}
         </div>
 
         {/* Header */}

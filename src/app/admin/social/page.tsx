@@ -57,28 +57,19 @@ export default function SocialQueuePage() {
   async function handlePostNow(post: SocialPost) {
     setPosting(post.id);
     try {
-      const res = await fetch("/api/admin/post-linkedin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content: post.content, linkUrl: post.link_url }),
-      });
-
-      const data = await res.json();
-
-      // Update status in DB
-      await fetch("/api/admin/social-posts", {
+      // Post via SignalPost API (proxied through our API route)
+      const res = await fetch("/api/admin/social-posts", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: post.id,
-          status: data.success ? "posted" : "failed",
-          post_url: data.postUrl || null,
-          post_id: data.postId || null,
-          error: data.error || null,
-          posted_at: data.success ? new Date().toISOString() : null,
+          platform: post.platform,
+          content: post.content,
+          linkUrl: post.link_url,
         }),
       });
 
+      await res.json();
       loadPosts();
     } catch {
       // silent

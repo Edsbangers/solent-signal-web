@@ -1,40 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
-import { randomBytes } from "crypto";
 
 export const dynamic = "force-dynamic";
 
+// Redirect to SignalPost OAuth flow
 export async function GET(req: NextRequest) {
-  const clientId = process.env.LINKEDIN_CLIENT_ID;
-  if (!clientId) {
+  const spUrl =
+    process.env.SIGNALPOST_API_URL || "https://signalpost-api.vercel.app";
+  const spKey = process.env.SIGNALPOST_API_KEY;
+
+  if (!spKey) {
     return NextResponse.json(
-      { error: "LINKEDIN_CLIENT_ID not configured in environment." },
+      { error: "SIGNALPOST_API_KEY not configured." },
       { status: 500 }
     );
   }
 
   const host = req.headers.get("host") || "solentsignal.com";
   const protocol = host.includes("localhost") ? "http" : "https";
-  const redirectUri = `${protocol}://${host}/api/admin/linkedin-callback`;
+  const returnUrl = `${protocol}://${host}/admin/social`;
 
-  const state = randomBytes(16).toString("hex");
-  const scopes = "openid profile w_member_social";
+  const connectUrl = `${spUrl}/api/oauth/linkedin/connect?api_key=${encodeURIComponent(spKey)}&return_url=${encodeURIComponent(returnUrl)}`;
 
-  const authUrl = new URL("https://www.linkedin.com/oauth/v2/authorization");
-  authUrl.searchParams.set("response_type", "code");
-  authUrl.searchParams.set("client_id", clientId);
-  authUrl.searchParams.set("redirect_uri", redirectUri);
-  authUrl.searchParams.set("state", state);
-  authUrl.searchParams.set("scope", scopes);
-
-  // Store state in a cookie for CSRF validation
-  const res = NextResponse.redirect(authUrl.toString());
-  res.cookies.set("linkedin_oauth_state", state, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "lax",
-    path: "/",
-    maxAge: 600, // 10 minutes
-  });
-
-  return res;
+  return NextResponse.redirect(connectUrl);
 }

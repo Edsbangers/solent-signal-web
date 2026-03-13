@@ -411,10 +411,10 @@ export default function AdminBlogPage() {
                     setLinkedinResult(null);
                     try {
                       const blogUrl = publishedUrl ? `https://solentsignal.com${publishedUrl}` : undefined;
-                      const res = await fetch("/api/admin/post-linkedin", {
-                        method: "POST",
+                      const res = await fetch("/api/admin/social-posts", {
+                        method: "PATCH",
                         headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ content: result.socialSnippet, linkUrl: blogUrl }),
+                        body: JSON.stringify({ platform: "linkedin", content: result.socialSnippet, linkUrl: blogUrl }),
                       });
                       const data = await res.json();
                       setLinkedinResult(data);

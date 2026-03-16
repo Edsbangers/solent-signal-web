@@ -48,6 +48,7 @@ export default function Footer() {
               {[
                 { href: "/", label: "Home" },
                 { href: "/about", label: "About" },
+                { href: "/work", label: "Our Work" },
                 { href: "/pricing", label: "Pricing" },
                 { href: "/saas", label: "Bespoke SaaS" },
                 { href: "/get-started", label: "Get Started" },

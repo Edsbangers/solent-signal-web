@@ -2,11 +2,13 @@
 
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import SimpleLeadForm from "@/components/SimpleLeadForm";
 import AgenticLeadForm from "@/components/AgenticLeadForm";
 
 function GetStartedInner() {
   const searchParams = useSearchParams();
   const businessParam = searchParams.get("business") || "";
+  const style = searchParams.get("style");
 
   return (
     <main className="max-w-2xl mx-auto px-6 py-20">
@@ -14,9 +16,9 @@ function GetStartedInner() {
       <div className="text-center mb-12">
         <div
           className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-5 text-xs font-bold uppercase tracking-widest"
-          style={{ background: "rgba(6,182,212,0.08)", border: "1px solid rgba(6,182,212,0.2)", color: "#06b6d4" }}
+          style={{ background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.2)", color: "#22c55e" }}
         >
-          🔦 Powered by The Beacon AI
+          Free AI Visibility Audit
         </div>
         <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-5">
           See How AI{" "}
@@ -85,8 +87,12 @@ function GetStartedInner() {
         ))}
       </div>
 
-      {/* Agentic form */}
-      <AgenticLeadForm defaultBusiness={businessParam} />
+      {/* Form — terminal style for SaaS visitors, simple for everyone else */}
+      {style === "terminal" ? (
+        <AgenticLeadForm defaultBusiness={businessParam} />
+      ) : (
+        <SimpleLeadForm defaultBusiness={businessParam} />
+      )}
 
       {/* Reassurance */}
       <div
@@ -117,6 +123,14 @@ function GetStartedInner() {
           ))}
         </ol>
       </div>
+
+      {/* Alternative contact */}
+      <p className="text-center mt-6 text-sm" style={{ color: "#64748b" }}>
+        Prefer to talk? Email{" "}
+        <a href="mailto:hello@solentsignal.com" style={{ color: "#06b6d4" }}>hello@solentsignal.com</a>
+        {" "}or call{" "}
+        <a href="tel:07956139772" style={{ color: "#06b6d4" }}>07956 139772</a>
+      </p>
     </main>
   );
 }

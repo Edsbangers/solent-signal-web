@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PricingCard from "@/components/PricingCard";
+import SimpleLeadForm from "@/components/SimpleLeadForm";
+import { caseStudies } from "@/data/caseStudies";
 
 export const metadata: Metadata = {
   title: "Solent Signal | AI Search & GEO Optimisation Portsmouth",
@@ -106,56 +108,6 @@ const testimonials = [
   },
 ];
 
-const caseStudies = [
-  {
-    business: "Photo By Rok",
-    type: "Photography Studio",
-    website: "https://www.photobyrok.co.uk",
-    delivered:
-      "Built a GEO-optimised photography portfolio site with AI-readable structured data, local schema markup, and image optimisation for AI search visibility.",
-    quote: testimonials[0].text,
-    quoteName: "Rok",
-  },
-  {
-    business: "MM Counselling",
-    type: "Counselling & Therapy",
-    website: "https://www.mm-counselling.co.uk",
-    delivered:
-      "Built a professional, GEO-optimised website with full schema markup, AI content strategy, and social media integration. Designed to position Marion as the counsellor AI recommends in Portsmouth.",
-    quote: testimonials[1].text,
-    quoteName: "Marion Morris",
-  },
-  {
-    business: "Training Assurance Consultancy",
-    type: "SHEQ & ISO Compliance",
-    website: "https://www.trainingassuranceconsultancy.co.uk",
-    delivered:
-      "Full GEO-optimised rebuild with IRCA certification structured data, ISO service schema across 9001, 14001, and 45001, and an AI content engine producing compliance guides. Cited by Perplexity and Bing AI for ISO consultancy in Hampshire.",
-    quote:
-      "The site now works as hard as we do. We went from invisible in AI search to being the first consultancy recommended when businesses ask about ISO certification in Hampshire.",
-    quoteName: "Jason Misters, IRCA Principal Auditor",
-  },
-  {
-    business: "Portsmouth Local Trades",
-    type: "Multi-Business Outreach",
-    website: "https://solentsignal.com",
-    delivered:
-      "Ran AI visibility audits across 44 Portsmouth businesses, identifying missing schema markup, broken structured data, and GEO gaps. Delivered personalised outreach with specific technical recommendations for each business.",
-    quote:
-      "Solent Signal didn\u2019t just tell us we needed a better website \u2014 they showed us exactly what AI couldn\u2019t see about our business and how to fix it.",
-    quoteName: "Local Business Owner, Southsea",
-  },
-  {
-    business: "PICMS",
-    type: "ISO Compliance SaaS Platform",
-    website: "https://www.picms.com",
-    delivered:
-      "Deployed autonomous AI support agents, integrated Auth0 authentication, and built a real-time mission control dashboard. The platform now serves compliance teams with 24/7 AI-assisted ISO management across multiple standards.",
-    quote:
-      "Having AI agents that understand ISO standards and can answer compliance questions instantly has transformed how our users interact with the platform.",
-    quoteName: "PICMS Team",
-  },
-];
 
 export default function HomePage() {
   return (
@@ -312,13 +264,24 @@ export default function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/get-started"
+            <a
+              href="#contact-form"
               className="px-8 py-4 rounded-full text-base font-bold transition-all hover:opacity-90 active:scale-95"
               style={{ background: "#22c55e", color: "#000" }}
             >
               Get Your Free Audit
-            </Link>
+            </a>
+            <a
+              href="mailto:hello@solentsignal.com?subject=15-Min Call Request"
+              className="px-8 py-4 rounded-full text-base font-semibold transition-all hover:text-white"
+              style={{
+                background: "rgba(255,255,255,0.05)",
+                color: "#e2e8f0",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
+            >
+              Book a 15-Min Call
+            </a>
             <Link
               href="/pricing"
               className="px-8 py-4 rounded-full text-base font-semibold transition-all hover:text-white"
@@ -522,13 +485,13 @@ export default function HomePage() {
               to competitors who&apos;ve already optimised for AI search. That&apos;s exactly
               what we fix.
             </p>
-            <Link
-              href="/get-started"
+            <a
+              href="#contact-form"
               className="inline-block mt-3 text-sm font-semibold hover:opacity-80 transition-opacity"
               style={{ color: "#0D9488" }}
             >
               Check your AI visibility for free →
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -633,34 +596,32 @@ export default function HomePage() {
           GEO-optimised websites we&apos;ve built for Solent businesses
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {caseStudies.map(({ business, type, website, delivered, quote, quoteName }) => (
-            <div
-              key={business}
-              className="rounded-2xl overflow-hidden"
+          {caseStudies.map((cs) => (
+            <Link
+              key={cs.slug}
+              href={`/work/${cs.slug}`}
+              className="group rounded-2xl overflow-hidden transition-all hover:border-cyan-500/30"
               style={{ background: "rgba(13,20,36,0.8)", border: "1px solid #1e293b" }}
             >
               <div className="p-7">
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-lg font-bold text-white">{business}</h3>
-                    <p className="text-xs" style={{ color: "#94a3b8" }}>{type}</p>
+                    <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">{cs.business}</h3>
+                    <p className="text-xs" style={{ color: "#94a3b8" }}>{cs.type}</p>
                   </div>
-                  <a
-                    href={website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold px-3 py-1.5 rounded-full hover:opacity-80 transition-opacity"
+                  <span
+                    className="text-xs font-semibold px-3 py-1.5 rounded-full"
                     style={{
                       background: "rgba(13,148,136,0.1)",
                       color: "#0D9488",
                       border: "1px solid rgba(13,148,136,0.25)",
                     }}
                   >
-                    View site ↗
-                  </a>
+                    View ↗
+                  </span>
                 </div>
                 <p className="text-sm leading-relaxed mb-5" style={{ color: "#94a3b8" }}>
-                  <strong className="text-white">What we delivered:</strong> {delivered}
+                  <strong className="text-white">What we delivered:</strong> {cs.delivered}
                 </p>
                 <div
                   className="rounded-xl p-4"
@@ -670,16 +631,25 @@ export default function HomePage() {
                   }}
                 >
                   <p className="text-xs leading-relaxed mb-2" style={{ color: "#cbd5e1" }}>
-                    &ldquo;{quote}&rdquo;
+                    &ldquo;{cs.quote.length > 120 ? cs.quote.slice(0, 120) + "..." : cs.quote}&rdquo;
                   </p>
                   <p className="text-xs font-semibold" style={{ color: "#0D9488" }}>
-                    — {quoteName}
+                    — {cs.quoteName}
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
+        <p className="text-center mt-8">
+          <Link
+            href="/work"
+            className="text-sm font-semibold hover:opacity-80 transition-opacity"
+            style={{ color: "#06b6d4" }}
+          >
+            View all case studies →
+          </Link>
+        </p>
       </section>
 
       {/* ── Rooted in Portsmouth ── */}
@@ -830,31 +800,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Bottom CTA ── */}
-      <section className="max-w-6xl mx-auto px-6 pb-24">
-        <div
-          className="rounded-2xl p-10 md:p-14 text-center"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(59,130,246,0.08), rgba(6,182,212,0.08))",
-            border: "1px solid rgba(59,130,246,0.2)",
-          }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to get found by AI?
-          </h2>
-          <p className="max-w-xl mx-auto mb-8" style={{ color: "#94a3b8" }}>
-            We&apos;ll check how your business shows up in ChatGPT, Google AI &amp;
-            voice search — and show you exactly what&apos;s missing. Free.
-          </p>
-          <Link
-            href="/get-started"
-            className="inline-block px-10 py-4 rounded-full text-base font-bold transition-all hover:opacity-90 active:scale-95"
-            style={{ background: "#22c55e", color: "#000" }}
-          >
-            Get Your Free AI Visibility Audit
-          </Link>
+      {/* ── Contact Form ── */}
+      <section id="contact-form" className="max-w-2xl mx-auto px-6 pb-12 pt-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-3">
+          Ready to get found by AI?
+        </h2>
+        <p className="text-center mb-8" style={{ color: "#94a3b8" }}>
+          We&apos;ll check how your business shows up in ChatGPT, Google AI &amp;
+          voice search — and show you exactly what&apos;s missing. Free.
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+          {[
+            "Free, no obligation",
+            "Results within 48 hours",
+            "No spam, ever",
+            "Rated 5/5 on Google",
+          ].map((text) => (
+            <div
+              key={text}
+              className="flex items-center gap-1.5 text-xs font-medium py-2.5 px-3 rounded-lg"
+              style={{
+                background: "rgba(34,197,94,0.05)",
+                border: "1px solid rgba(34,197,94,0.12)",
+                color: "#e2e8f0",
+              }}
+            >
+              <span style={{ color: "#22c55e" }}>✓</span>
+              {text}
+            </div>
+          ))}
         </div>
+        <SimpleLeadForm />
+        <p className="text-center mt-6 text-sm" style={{ color: "#64748b" }}>
+          Prefer to talk? Email{" "}
+          <a href="mailto:hello@solentsignal.com" style={{ color: "#06b6d4" }}>hello@solentsignal.com</a>
+          {" "}or call{" "}
+          <a href="tel:07956139772" style={{ color: "#06b6d4" }}>07956 139772</a>
+        </p>
       </section>
     </>
   );

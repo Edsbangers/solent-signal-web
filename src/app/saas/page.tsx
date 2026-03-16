@@ -144,7 +144,7 @@ export default function SaaSPage() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
-            href="/get-started"
+            href="/get-started?style=terminal"
             className="px-8 py-4 rounded-full text-base font-bold transition-all hover:opacity-90 active:scale-95"
             style={{ background: "#22c55e", color: "#000" }}
           >
@@ -485,7 +485,7 @@ export default function SaaSPage() {
             of the ROI.
           </p>
           <Link
-            href="/get-started"
+            href="/get-started?style=terminal"
             className="inline-block px-10 py-4 rounded-full text-base font-bold transition-all hover:opacity-90 active:scale-95"
             style={{ background: "#22c55e", color: "#000" }}
           >

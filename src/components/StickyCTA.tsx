@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function StickyCTA() {
   const [visible, setVisible] = useState(false);
   const [dismissed, setDismissed] = useState(false);
-  const [business, setBusiness] = useState("");
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     if (pathname === "/get-started") return;
@@ -22,11 +20,7 @@ export default function StickyCTA() {
 
   if (pathname === "/get-started" || dismissed || !visible) return null;
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const q = business.trim() ? `?business=${encodeURIComponent(business.trim())}` : "";
-    router.push(`/get-started${q}`);
-  }
+  const auditHref = pathname === "/" ? "#contact-form" : "/#contact-form";
 
   return (
     <div
@@ -51,27 +45,22 @@ export default function StickyCTA() {
         <p className="text-white text-sm font-medium flex-shrink-0">
           Want to see if AI can find your business?
         </p>
-        <form onSubmit={handleSubmit} className="flex gap-2 flex-1 w-full sm:w-auto">
-          <input
-            type="text"
-            value={business}
-            onChange={(e) => setBusiness(e.target.value)}
-            placeholder="Enter your business name"
-            className="flex-1 min-w-0 text-sm px-3 py-2 rounded-lg outline-none"
-            style={{
-              background: "rgba(255,255,255,0.1)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              color: "#fff",
-            }}
-          />
-          <button
-            type="submit"
+        <div className="flex gap-2 flex-1 w-full sm:w-auto sm:justify-end">
+          <a
+            href={auditHref}
             className="text-sm font-bold px-4 py-2 rounded-lg flex-shrink-0 hover:opacity-90 transition-opacity"
-            style={{ background: "#0D9488", color: "#fff" }}
+            style={{ background: "#22c55e", color: "#000" }}
           >
-            Check Now — Free
-          </button>
-        </form>
+            Get Free Audit
+          </a>
+          <a
+            href="mailto:hello@solentsignal.com?subject=15-Min Call Request"
+            className="text-sm font-semibold px-4 py-2 rounded-lg flex-shrink-0 hover:opacity-90 transition-opacity"
+            style={{ background: "rgba(255,255,255,0.1)", color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}
+          >
+            Book a 15-Min Call
+          </a>
+        </div>
         <button
           onClick={() => setDismissed(true)}
           className="absolute top-1 right-2 sm:static sm:ml-2 text-white/50 hover:text-white text-lg leading-none"

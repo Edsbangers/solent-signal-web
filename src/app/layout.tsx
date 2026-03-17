@@ -44,6 +44,14 @@ export const metadata: Metadata = {
     description:
       "GEO-optimised websites for Portsmouth & Solent area businesses.",
   },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   metadataBase: new URL("https://solentsignal.com"),
   robots: { index: true, follow: true },
   other: {

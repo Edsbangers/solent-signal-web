@@ -14,6 +14,12 @@ export default function SimpleLeadForm({ defaultBusiness = "" }: { defaultBusine
     setStatus("processing");
     setErrorMsg("");
     track("beacon_form_submitted");
+    if (typeof window !== "undefined" && typeof (window as any).gtag === "function") {
+      (window as any).gtag("event", "generate_lead", {
+        event_category: "conversion",
+        event_label: "free_audit_form",
+      });
+    }
 
     const fd = new FormData(e.currentTarget);
     const payload = {
@@ -238,12 +244,12 @@ export default function SimpleLeadForm({ defaultBusiness = "" }: { defaultBusine
           >
             What does your business do? <span style={{ color: "#ef4444" }}>*</span>
           </label>
-          <textarea
+          <input
             id="simple-message"
             name="message"
+            type="text"
             required
-            rows={4}
-            placeholder="Tell us a bit about your business — what you do, where you're based, and what your biggest challenge is right now."
+            placeholder="e.g. Plumber in Southsea, Restaurant in Old Portsmouth"
             style={{
               background: "rgba(255,255,255,0.04)",
               border: "1px solid #1e293b",
@@ -253,7 +259,6 @@ export default function SimpleLeadForm({ defaultBusiness = "" }: { defaultBusine
               width: "100%",
               fontSize: "15px",
               outline: "none",
-              resize: "vertical",
               transition: "border-color 0.15s",
               boxSizing: "border-box",
             }}

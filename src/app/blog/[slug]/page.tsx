@@ -153,9 +153,33 @@ export default async function BlogPostPage({
           }}
           dangerouslySetInnerHTML={{ __html: typedPost.content }}
         />
+
+        {/* Mid-article inline CTA */}
+        <div
+          className="rounded-xl p-5 my-10"
+          style={{
+            background: "rgba(34,197,94,0.05)",
+            border: "1px solid rgba(34,197,94,0.15)",
+            borderLeft: "3px solid #22c55e",
+          }}
+        >
+          <p className="text-sm font-semibold text-white mb-1">
+            Want to see how AI finds your business?
+          </p>
+          <p className="text-xs mb-3" style={{ color: "#94a3b8" }}>
+            We&apos;ll check ChatGPT, Google AI &amp; voice search for your business — free, no obligation.
+          </p>
+          <Link
+            href="/get-started"
+            className="inline-block px-5 py-2 rounded-full text-xs font-bold transition-all hover:opacity-90"
+            style={{ background: "#22c55e", color: "#000" }}
+          >
+            Get Your Free Audit →
+          </Link>
+        </div>
       </article>
 
-      {/* CTA */}
+      {/* Bottom CTA */}
       <div
         className="rounded-2xl p-8 mt-16 text-center"
         style={{
@@ -170,13 +194,26 @@ export default async function BlogPostPage({
         <p className="text-sm mb-6" style={{ color: "#94a3b8" }}>
           Get a free AI visibility audit for your Portsmouth or Solent business.
         </p>
-        <Link
-          href="/get-started"
-          className="inline-block px-8 py-3 rounded-full text-sm font-bold transition-all hover:opacity-90"
-          style={{ background: "#22c55e", color: "#000" }}
-        >
-          Get Your Free Audit
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link
+            href="/get-started"
+            className="inline-block px-8 py-3 rounded-full text-sm font-bold transition-all hover:opacity-90"
+            style={{ background: "#22c55e", color: "#000" }}
+          >
+            Get Your Free Audit
+          </Link>
+          <a
+            href="mailto:hello@solentsignal.com?subject=15-Min Call Request"
+            className="inline-block px-8 py-3 rounded-full text-sm font-semibold transition-all hover:text-white"
+            style={{
+              background: "rgba(255,255,255,0.05)",
+              color: "#e2e8f0",
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
+          >
+            Book a 15-Min Call
+          </a>
+        </div>
       </div>
     </main>
   );

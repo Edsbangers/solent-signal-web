@@ -136,7 +136,28 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+            // Skip analytics on admin pages
+            if (window.location.pathname.startsWith('/admin')) return;
             gtag('config', 'G-0DPPYSH1L9');
+
+            // Track email link clicks
+            document.addEventListener('click', function(e) {
+              var el = e.target.closest('a');
+              if (!el) return;
+              var href = el.getAttribute('href') || '';
+              if (href.startsWith('mailto:')) {
+                gtag('event', 'contact_email_click', {
+                  event_category: 'engagement',
+                  event_label: href.replace('mailto:', ''),
+                });
+              }
+              if (href.startsWith('tel:')) {
+                gtag('event', 'contact_phone_click', {
+                  event_category: 'engagement',
+                  event_label: href.replace('tel:', ''),
+                });
+              }
+            });
           `}
         </Script>
         <script
